@@ -1,10 +1,20 @@
 import tkinter as tk
 import math
+from PIL import ImageTk, Image
 
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
 root.title("Weird Calculator")
+root.geometry('500x500')
+
+# create icon
+root.iconbitmap('calcicon.ico')
 memorynumber = 0
+
+# Attach backgroun image
+myimg = ImageTk.PhotoImage(Image.open("spiderimg.png"))
+imglabel = tk.Label(image=myimg)
+imglabel.place(x=0, y=0)
 
 # creating input fields widget
 e = tk.Entry(root, width=50, borderwidth=3)
@@ -19,7 +29,6 @@ def mathfunc(opr):
     valnow = str(e.get())
     e.delete(0, tk.END)
     e.insert(0, valnow + opr)
-
 
 def clearnum():
     global memorynumber
@@ -134,7 +143,6 @@ def equalopr():
             if oprindex[i] - oprindex[i-1] == 1:
                 valuelist.append(float(eqnscreen[oprindex[i]:oprindex[i+1]]))
                 del oprindex[i]
-
             else:
                 valuelist.append(float(eqnscreen[oprindex[i]+1:oprindex[i+1]]))
         except:
@@ -144,7 +152,6 @@ def equalopr():
 
     del oprindex[0]
     del oprindex[-1]
-
     global memorynumber
     memorynumber = valuelist[0]
 

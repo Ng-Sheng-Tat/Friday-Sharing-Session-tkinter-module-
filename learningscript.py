@@ -1,7 +1,11 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
+root.geometry('500x500')
+# create icon
+root.iconbitmap('calcicon.ico')
 
 # creating input fields widget
 e = tk.Entry(root, width=45, bg="pink", fg="black", borderwidth=3)
@@ -31,8 +35,16 @@ def onceclick():
     mylabel = tk.Label(root, text=myoutput)
     mylabel.pack()
 
+# Define images
+myimg = ImageTk.PhotoImage(Image.open("spiderimg.png"))
+imglabel = tk.Label(image=myimg)
+imglabel.place(x=0, y=0)
+
 mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=onceclick, fg="black", bg="yellow") # state=tk.DISABLED
 mybutton.pack()
+
+quitbutton =  tk.Button(root, text="Exit", padx=20, pady=13, command=root.quit)
+quitbutton.pack()
 
 # everthing of applications are looping constantly
 root.mainloop()
