@@ -2,6 +2,7 @@ import tkinter as tk
 import math
 from PIL import ImageTk, Image
 from tkinter import font as tkFont
+import subprocess
 
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
@@ -17,7 +18,7 @@ myimg = ImageTk.PhotoImage(Image.open("spiderimg1bg.png"))
 label = tk.Label(root, image = myimg)
 label.grid(row=0, column=0)
 
-# setting image
+# setting image for buttons
 clearimg = ImageTk.PhotoImage(file="clearbg.png")
 equalimg = ImageTk.PhotoImage(file="equalbg.png")
 
@@ -133,6 +134,9 @@ def calcnow():
     except:
         pass
 
+def runexcel():
+    subprocess.Popen(r"C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE")
+
 def equalopr():
     operationlist = ["+", "-", "x", "/"]
     eqnscreen = str(e.get())
@@ -204,7 +208,7 @@ bueq = tk.Button(root, image=equalimg, width=92, height=85, command=equalopr)
 
 # define apps button
 buword = tk.Button(root, text="word", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=trial)
-buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=trial)
+buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=runexcel)
 buref = tk.Button(root, text="\u21BB", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=calcnow)
 
 # define functions buttons
