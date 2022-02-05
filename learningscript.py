@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from tkinter import messagebox
 
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
@@ -35,7 +36,8 @@ def onceclick():
     mylabel = tk.Label(root, text=myoutput)
     mylabel.pack()
 
-# Define images
+"""
+Define images
 myimg = ImageTk.PhotoImage(Image.open("spiderimg.png"))
 imglabel = tk.Label(image=myimg)
 imglabel.place(x=0, y=0)
@@ -45,6 +47,53 @@ mybutton.pack()
 
 quitbutton =  tk.Button(root, text="Exit", padx=20, pady=13, command=root.quit)
 quitbutton.pack()
+"""
+
+"""
+# Radio Button
+myvariable = tk.IntVar() # StrVar()
+# Set the default option
+myvariable.set("2")
+
+def checked(val):
+    mylabel = tk.Label(root, text=val)
+    mylabel.pack()
+
+tk.Radiobutton(root, text="Choice 1", variable=myvariable, value=1, command=lambda: checked(myvariable.get())).pack()
+tk.Radiobutton(root, text="Choice 2", variable=myvariable, value=2, command=lambda: checked(myvariable.get())).pack()
+myLabel = tk.Label(root, text=myvariable.get())
+myLabel.pack()
+"""
+"""
+# messages box
+def message():
+    messagebox.showinfo("Message Title", "My message")
+
+tk.Button(root, text="MsgBox", command=message).pack()
+"""
+
+"""
+# checkbox
+def showvar():
+    mylabel = tk.Label(root, text=var.get()).pack()
+
+var = tk.IntVar()
+c = tk.Checkbutton(root, text="Text to display", variable=var)
+c.pack()
+bu = tk.Button(root, text="Show Text", command=showvar).pack()
+"""
+
+# Dropdown menu
+def showval():
+    mylabel = tk.Label(root, text=clicked.get()).pack()
+
+clicked = tk.StringVar()
+clicked.set("Friday")
+
+dropd = tk.OptionMenu(root, clicked, "Friday", "Saturday", "Sunday")
+dropd.pack()
+
+bu = tk.Button(root, text="Show Me", command=showval).pack()
 
 # everthing of applications are looping constantly
 root.mainloop()
