@@ -10,13 +10,13 @@ root.title("Weird Calculator")
 root.geometry('530x580')
 
 # create icon
-root.iconbitmap('calcicon.ico')
+root.iconbitmap('calcicon2.ico')
 memorynumber = 0
 
 # Attach backgroun image decoration
-myimg = ImageTk.PhotoImage(Image.open("spiderimg1bg.png"))
+myimg = ImageTk.PhotoImage(Image.open("calcimgbg.png"))
 label = tk.Label(root, image = myimg)
-label.grid(row=0, column=0)
+label.grid(row=0, column=4)
 
 # setting image for buttons
 clearimg = ImageTk.PhotoImage(file="clearbg.png")
@@ -27,7 +27,7 @@ fontfamily = tkFont.Font(family='Times New Roman', size=10, weight=tkFont.BOLD)
 
 # creating input fields widget
 e = tk.Entry(root, width=60, borderwidth=10)
-e.grid(row=0, column=1, columnspan=4, padx=8, pady=8)
+e.grid(row=0, column=0, columnspan=4, padx=8, pady=8)
 
 def addnum(number):
     valnow = str(e.get())
