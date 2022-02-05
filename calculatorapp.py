@@ -6,23 +6,27 @@ from tkinter import font as tkFont
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
 root.title("Weird Calculator")
-root.geometry('500x500')
+root.geometry('530x580')
 
 # create icon
 root.iconbitmap('calcicon.ico')
 memorynumber = 0
 
-# Attach backgroun image
-myimg = ImageTk.PhotoImage(Image.open("spiderimg.png"))
-imglabel = tk.Label(image=myimg)
-imglabel.place(x=0, y=0)
+# Attach backgroun image decoration
+myimg = ImageTk.PhotoImage(Image.open("spiderimg1bg.png"))
+label = tk.Label(root, image = myimg)
+label.grid(row=0, column=0)
+
+# setting image
+clearimg = ImageTk.PhotoImage(file="clearbg.png")
+equalimg = ImageTk.PhotoImage(file="equalbg.png")
 
 # setting font
 fontfamily = tkFont.Font(family='Times New Roman', size=10, weight=tkFont.BOLD)
 
 # creating input fields widget
 e = tk.Entry(root, width=60, borderwidth=10)
-e.grid(row=0, column=0, columnspan=5, padx=8, pady=8)
+e.grid(row=0, column=1, columnspan=4, padx=8, pady=8)
 
 def addnum(number):
     valnow = str(e.get())
@@ -184,7 +188,7 @@ widthvar = 10
 heightvar = 4
 
 # define text button
-buclear = tk.Button(root, text="clear", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=clearnum)
+buclear = tk.Button(root, image=clearimg, width=92, height=85, command=clearnum)
 bu1 = tk.Button(root, text="1", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: addnum("1"))
 bu2 = tk.Button(root, text="2", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("2"))
 bu3 = tk.Button(root, text="3", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("3"))
@@ -196,7 +200,7 @@ bu8 = tk.Button(root, text="8", padx=padxvar, pady=padyvar, width=widthvar, heig
 bu9 = tk.Button(root, text="9", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("9"))
 bu0 = tk.Button(root, text="0", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("0"))
 budot = tk.Button(root, text=".", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=dotopr)
-bueq = tk.Button(root, text="=", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=equalopr)
+bueq = tk.Button(root, image=equalimg, width=92, height=85, command=equalopr)
 
 # define apps button
 buword = tk.Button(root, text="word", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=trial)
