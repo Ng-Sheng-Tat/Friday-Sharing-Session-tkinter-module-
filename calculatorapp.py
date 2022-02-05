@@ -1,6 +1,7 @@
 import tkinter as tk
 import math
 from PIL import ImageTk, Image
+from tkinter import font as tkFont
 
 # everything in tkinter is widgets, creating the root widgets
 root = tk.Tk()
@@ -16,8 +17,11 @@ myimg = ImageTk.PhotoImage(Image.open("spiderimg.png"))
 imglabel = tk.Label(image=myimg)
 imglabel.place(x=0, y=0)
 
+# setting font
+fontfamily = tkFont.Font(family='Times New Roman', size=10, weight=tkFont.BOLD)
+
 # creating input fields widget
-e = tk.Entry(root, width=50, borderwidth=3)
+e = tk.Entry(root, width=60, borderwidth=10)
 e.grid(row=0, column=0, columnspan=5, padx=8, pady=8)
 
 def addnum(number):
@@ -174,43 +178,44 @@ def equalopr():
 def trial():
     return
 
-padxvar = 13
-padyvar = 13
-widthvar = 8
+padxvar = 10
+padyvar = 10
+widthvar = 10
+heightvar = 4
 
 # define text button
-buclear = tk.Button(root, text="clear", padx=padxvar, pady=padyvar, width=widthvar, command=clearnum)
-bu1 = tk.Button(root, text="1", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("1"))
-bu2 = tk.Button(root, text="2", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("2"))
-bu3 = tk.Button(root, text="3", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("3"))
-bu4 = tk.Button(root, text="4", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("4"))
-bu5 = tk.Button(root, text="5", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("5"))
-bu6 = tk.Button(root, text="6", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("6"))
-bu7 = tk.Button(root, text="7", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("7"))
-bu8 = tk.Button(root, text="8", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("8"))
-bu9 = tk.Button(root, text="9", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("9"))
-bu0 = tk.Button(root, text="0", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("0"))
-budot = tk.Button(root, text=".", padx=padxvar, pady=padyvar, width=widthvar, command=dotopr)
-bueq = tk.Button(root, text="=", padx=padxvar, pady=padyvar, width=widthvar, command=equalopr)
+buclear = tk.Button(root, text="clear", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=clearnum)
+bu1 = tk.Button(root, text="1", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: addnum("1"))
+bu2 = tk.Button(root, text="2", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("2"))
+bu3 = tk.Button(root, text="3", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("3"))
+bu4 = tk.Button(root, text="4", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("4"))
+bu5 = tk.Button(root, text="5", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("5"))
+bu6 = tk.Button(root, text="6", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("6"))
+bu7 = tk.Button(root, text="7", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("7"))
+bu8 = tk.Button(root, text="8", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("8"))
+bu9 = tk.Button(root, text="9", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("9"))
+bu0 = tk.Button(root, text="0", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=lambda: addnum("0"))
+budot = tk.Button(root, text=".", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=dotopr)
+bueq = tk.Button(root, text="=", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar,font=fontfamily, command=equalopr)
 
 # define apps button
-buword = tk.Button(root, text="word", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-buref = tk.Button(root, text="\u21BB", padx=padxvar, pady=padyvar, width=widthvar, command=calcnow)
+buword = tk.Button(root, text="word", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=trial)
+buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=trial)
+buref = tk.Button(root, text="\u21BB", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=calcnow)
 
 # define functions buttons
-buexp = tk.Button(root, text="EXP", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("EXP"))
-buln = tk.Button(root, text="log", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("log"))
-butan = tk.Button(root, text="tan", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("tan"))
-bucos = tk.Button(root, text="cos", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("cos"))
-busin = tk.Button(root, text="sin", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("sin"))
+buexp = tk.Button(root, text="EXP", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: mathfunc("EXP"))
+buln = tk.Button(root, text="log", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: mathfunc("log"))
+butan = tk.Button(root, text="tan", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: mathfunc("tan"))
+bucos = tk.Button(root, text="cos", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: mathfunc("cos"))
+busin = tk.Button(root, text="sin", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=lambda: mathfunc("sin"))
 
 # define operations buttons
-buadd = tk.Button(root, text="+", padx=padxvar, pady=padyvar, width=widthvar, command=addopr)
-busub = tk.Button(root, text="-", padx=padxvar, pady=padyvar, width=widthvar, command=subopr)
-bumul = tk.Button(root, text="x", padx=padxvar, pady=padyvar, width=widthvar, command=mulopr)
-budiv = tk.Button(root, text="/", padx=padxvar, pady=padyvar, width=widthvar, command=divopr)
-bupow = tk.Button(root, text="power", padx=padxvar, pady=padyvar, width=widthvar, command=powopr)
+buadd = tk.Button(root, text="+", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=addopr)
+busub = tk.Button(root, text="-", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=subopr)
+bumul = tk.Button(root, text="x", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=mulopr)
+budiv = tk.Button(root, text="/", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=divopr)
+bupow = tk.Button(root, text="power", padx=padxvar, pady=padyvar, width=widthvar, height=heightvar, font=fontfamily, command=powopr)
 
 # put button onto the screen
 buttonlist = [buclear, buref, buexcel, buexp, buadd, bu1, bu2, bu3, buln, busub, bu4, bu5, bu6, busin, bumul, bu7, bu8, bu9, bucos, budiv, bueq, budot, bu0, butan, bupow]
