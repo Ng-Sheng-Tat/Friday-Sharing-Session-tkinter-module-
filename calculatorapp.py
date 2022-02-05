@@ -50,6 +50,37 @@ def powopr():
     e.delete(0, tk.END)
     e.insert(0, str(screennumber) + "^")
 
+def calcnow():
+    screennumber = e.get()
+    print(screennumber)
+    symbollist = []
+    for i in range(len(screennumber)-1, -1, -1):
+        # print(screennumber[i])
+        if screennumber[i] == "^":
+            j = i
+            power = float(screennumber[i+1:])
+            print(f"power: {power}")
+            for k in range(i, -1, -1):
+                print(screennumber[k])
+                if screennumber[k] in ["+", "-", "x", "/"]:
+                    val = float(screennumber[k+1:j])
+                    print(f"base: {val}")
+                    break
+                if k == 0:
+                    val = float(screennumber[k:j])
+                    print(f"base: {val}")
+            rewritevalue = round(val**power, 5)
+            print(rewritevalue)
+
+    for a in range(len(screennumber)-1, -1, -1):
+        print(screennumber[a])
+        if screennumber[a] in ["+", "-", "x", "/"]:
+            putonvalue = str(screennumber[0:a+1]) + str(rewritevalue)
+            break
+        else:
+            putonvalue = str(rewritevalue)
+    e.delete(0, tk.END)
+    e.insert(0, putonvalue)
 
 def equalopr():
     operationlist = ["+", "-", "x", "/"]
@@ -57,7 +88,7 @@ def equalopr():
     oprindex = [-1, int(len(eqnscreen))]
 
     for i in range(len(eqnscreen)):
-        if eqnscreen[i] in operationlist:
+        if eqnscreen[i] in operationlist and eqnscreen[i-1] != "e":
             oprindex.append(i)
 
 
@@ -80,6 +111,7 @@ def equalopr():
     global memorynumber
     memorynumber = valuelist[0]
 
+
     for i in range(len(oprindex)):
         try:
             if eqnscreen[oprindex[i]] == "+":
@@ -92,7 +124,6 @@ def equalopr():
                 memorynumber /= float(valuelist[i+1])
         except:
             pass
-
 
     e.delete(0, tk.END)
     e.insert(0, memorynumber)
@@ -123,7 +154,7 @@ bueq = tk.Button(root, text="=", padx=padxvar, pady=padyvar, width=widthvar, com
 # define apps button
 buword = tk.Button(root, text="word", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
 buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-bupad = tk.Button(root, text="pad", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
+buref = tk.Button(root, text="\u21BB", padx=padxvar, pady=padyvar, width=widthvar, command=calcnow)
 
 # define functions buttons
 buexp = tk.Button(root, text="e", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
@@ -141,14 +172,12 @@ budiv = tk.Button(root, text="/", padx=padxvar, pady=padyvar, width=widthvar, co
 bupow = tk.Button(root, text="power", padx=padxvar, pady=padyvar, width=widthvar, command=powopr)
 
 # put button onto the screen
-buttonlist = [buclear, bupad, buexcel, buexp, buadd, bu1, bu2, bu3, buln, busub, bu4, bu5, bu6, busin, bumul, bu7, bu8, bu9, bucos, budiv, bueq, budot, bu0, butan, bupow]
+buttonlist = [buclear, buref, buexcel, buexp, buadd, bu1, bu2, bu3, buln, busub, bu4, bu5, bu6, busin, bumul, bu7, bu8, bu9, bucos, budiv, bueq, budot, bu0, butan, bupow]
 counter = 0
 for j in range(1, 6):
     for i in range(0, 5):
         buttonlist[counter].grid(row=j, column=i)
         counter += 1
-
-
 
 mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=trial, fg="black", bg="yellow") # state=tk.DISABLED
 
