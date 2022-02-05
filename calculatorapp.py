@@ -15,6 +15,12 @@ def addnum(number):
     e.delete(0, tk.END)
     e.insert(0, valnow + number)
 
+def mathfunc(opr):
+    valnow = str(e.get())
+    e.delete(0, tk.END)
+    e.insert(0, valnow + opr)
+
+
 def clearnum():
     global memorynumber
     memorynumber = 0
@@ -72,33 +78,65 @@ def calcnow():
             rewritevalue = round(val**power, 5)
             print(rewritevalue)
 
+    if "cos" in screennumber:
+        myindex = screennumber.index("c")
+        val = float(screennumber[myindex+3:])
+        rewritevalue = str(math.cos(val))
+    elif "sin" in screennumber:
+        myindex = screennumber.index("s")
+        val = float(screennumber[myindex+3:])
+        rewritevalue = str(math.sin(val))
+    elif "tan" in screennumber:
+        myindex = screennumber.index("t")
+        val = float(screennumber[myindex+3:])
+        rewritevalue = str(math.tan(val))
+    elif "EXP" in screennumber:
+        myindex = screennumber.index("E")
+        val = float(screennumber[myindex+3:])
+        rewritevalue = str(math.exp(val))
+    elif "log" in screennumber:
+        myindex = screennumber.index("l")
+        val = float(screennumber[myindex+3:])
+        rewritevalue = str(math.log(val))
+
     for a in range(len(screennumber)-1, -1, -1):
         print(screennumber[a])
         if screennumber[a] in ["+", "-", "x", "/"]:
             putonvalue = str(screennumber[0:a+1]) + str(rewritevalue)
             break
         else:
-            putonvalue = str(rewritevalue)
-    e.delete(0, tk.END)
-    e.insert(0, putonvalue)
+            try:
+                putonvalue = str(rewritevalue)
+            except:
+                pass
+
+    try:
+        e.delete(0, tk.END)
+        e.insert(0, putonvalue)
+    except:
+        pass
 
 def equalopr():
     operationlist = ["+", "-", "x", "/"]
     eqnscreen = str(e.get())
+    print(eqnscreen)
     oprindex = [-1, int(len(eqnscreen))]
+    print(oprindex)
 
     for i in range(len(eqnscreen)):
-        if eqnscreen[i] in operationlist and eqnscreen[i-1] != "e":
+        if eqnscreen[i] in operationlist and eqnscreen[i-1] != "e" and i!=0:
             oprindex.append(i)
 
-
     oprindex.sort()
-
     valuelist = []
     for i in range(len(oprindex)):
         try:
-            valuelist.append(float(eqnscreen[oprindex[i]+1:oprindex[i+1]]))
+            if oprindex[i] - oprindex[i-1] == 1:
+                valuelist.append(float(eqnscreen[oprindex[i]:oprindex[i+1]]))
+                del oprindex[i]
 
+            else:
+                valuelist.append(float(eqnscreen[oprindex[i]+1:oprindex[i+1]]))
         except:
             # valuelist.append(eqnscreen[oprindex[i]+1:oprindex[i+1]])
             pass
@@ -106,11 +144,9 @@ def equalopr():
 
     del oprindex[0]
     del oprindex[-1]
-    print(oprindex)
 
     global memorynumber
     memorynumber = valuelist[0]
-
 
     for i in range(len(oprindex)):
         try:
@@ -128,14 +164,13 @@ def equalopr():
     e.delete(0, tk.END)
     e.insert(0, memorynumber)
 
-
-
 def trial():
     return
 
 padxvar = 13
 padyvar = 13
 widthvar = 8
+
 # define text button
 buclear = tk.Button(root, text="clear", padx=padxvar, pady=padyvar, width=widthvar, command=clearnum)
 bu1 = tk.Button(root, text="1", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: addnum("1"))
@@ -157,12 +192,11 @@ buexcel = tk.Button(root, text="excel", padx=padxvar, pady=padyvar, width=widthv
 buref = tk.Button(root, text="\u21BB", padx=padxvar, pady=padyvar, width=widthvar, command=calcnow)
 
 # define functions buttons
-buexp = tk.Button(root, text="e", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-bulog = tk.Button(root, text="log", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-buln = tk.Button(root, text="ln", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-butan = tk.Button(root, text="tan", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-bucos = tk.Button(root, text="cos", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
-busin = tk.Button(root, text="sin", padx=padxvar, pady=padyvar, width=widthvar, command=trial)
+buexp = tk.Button(root, text="EXP", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("EXP"))
+buln = tk.Button(root, text="log", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("log"))
+butan = tk.Button(root, text="tan", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("tan"))
+bucos = tk.Button(root, text="cos", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("cos"))
+busin = tk.Button(root, text="sin", padx=padxvar, pady=padyvar, width=widthvar, command=lambda: mathfunc("sin"))
 
 # define operations buttons
 buadd = tk.Button(root, text="+", padx=padxvar, pady=padyvar, width=widthvar, command=addopr)
