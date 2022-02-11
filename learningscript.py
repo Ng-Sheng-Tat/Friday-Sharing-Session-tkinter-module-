@@ -7,7 +7,7 @@ root = tk.Tk()
 root.geometry('500x500')
 root.title("Applications Name")
 # create icon
-root.iconbitmap('calcicon.ico')
+root.iconbitmap('calcicon2.ico')
 
 # # ------------------------------------------------------------------------------------
 
@@ -15,16 +15,16 @@ root.iconbitmap('calcicon.ico')
 # e = tk.Entry(root, width=45, bg="pink", fg="black", borderwidth=3)
 # e.pack()
 # e.insert(0, "Enter your name: ")
-#
-# # Button Widget
+# #
+# # # Button Widget
 # def onceclick():
 #     myoutput = "You enter " + e.get()
 #     mylabel = tk.Label(root, text=myoutput)
 #     mylabel.pack()
 #
-# mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=onceclick, fg="black", bg="yellow") # state=tk.DISABLED
+# mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=onceclick, fg="black", bg="yellow", state=tk.DISABLED) #
 # mybutton.pack()
-#
+# #
 # quitbutton =  tk.Button(root, text="Exit", padx=20, pady=13, command=root.quit)
 # quitbutton.pack()
 
@@ -38,10 +38,9 @@ root.iconbitmap('calcicon.ico')
 # # Button Widget
 # def onceclick():
 #     myoutput = "You enter " + e.get()
-#     mylabel = tk.Label(root, text=myoutput)
-#     mylabel.pack()
+#     print(myoutput)
 #
-# mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=onceclick, fg="black", bg="yellow", state=tk.DISABLED)
+# mybutton = tk.Button(root, text="Start", padx=20, pady=13, command=onceclick, fg="black", bg="yellow") #, state=tk.DISABLED
 # mybutton.grid(row=1, column=0)
 #
 # quitbutton =  tk.Button(root, text="Exit", padx=20, pady=13, command=root.quit)
